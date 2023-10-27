@@ -1,0 +1,29 @@
+// thống kê cho hệ thống
+==> lấy số liệu thống kê cho 1 artist bất kì
+input: artistId, year, month, date 
+output:
+    [
+        {
+            date: d/m/y
+            trackId: ...
+            listen: ...
+        }
+    ]
+
+// pay for artist
+==> lấy về data theo năm + tháng 
+==> trên cả hệ thống ==> của tất các artist
+input: year, month
+output:
+    [
+        {
+            artistId
+            total_listen
+        }
+    ]
+
+
+// streaming history
+input: user userId
+
+output: last 20 listened track

@@ -1,0 +1,136 @@
+redis Kiên trả về:
+
+year - date - month
+
+# log toan hệ thống
+{
+	"timestamp": 2023-06-09:12:15:00
+	"data": [
+		{
+			"trackId": "2372737dajgwdawjd",
+			"listen": 1
+		},
+		{
+			"trackId": "00007dajgwdawjd",
+			"listen": 1000
+		}
+	]
+}
+
+# log lịch sử nghe của người dùng
+[
+	{
+		"userId": "adwdawh1231231",
+		"history": [
+			{
+				"timestamp": 2023-06-09:12:17:10,
+				"trackId": "2372737dajgwdawjd",
+				"listenDuration": "120/180"
+			},
+			{
+				"timestamp": 2023-06-09:11:12:10,	
+				"trackId": "00007dajgwdawjd",
+				"listenDuration": "1000/1111"
+			}
+		]
+	},
+	{
+		"history": [
+			{
+				"listenDuration": "129/123",
+				"trackId": "018a3cae-a218-7950-8e76-1b680d1975c1",
+				"timestamp": "2023-25-10:20:49:21"
+			}
+		],
+		"userId": "01893ea5-8b68-7142-ad69-f066bfa7a7e9"
+  	}
+]
+
+
+---------STREAM HISTORY------------------
+[
+  {
+    "history": [
+      {
+        "listenDuration": "19/120",
+        "trackId": "01893ea5-8bb8-78f8-bb24-f9992eff0463",
+        "timestamp": "2023-25-10:20:48:49"
+      },
+      {
+        "listenDuration": "119/120",
+        "trackId": "01893ea5-8bb8-78f8-bb24-f9992eff0463",
+        "timestamp": "2023-25-10:20:48:59"
+      },
+      {
+        "listenDuration": "119/120",
+        "trackId": "018a3cae-a218-7950-8e76-1b680d1975c1",
+        "timestamp": "2023-25-10:20:49:05"
+      }
+    ],
+    "userId": "01893ea5-8bb1-77ee-aa46-5ba6ff236c26"
+  },
+  {
+    "history": [{
+      "listenDuration": "129/123",
+      "trackId": "018a3cae-a218-7950-8e76-1b680d1975c1",
+      "timestamp": "2023-25-10:20:49:21"
+    }],
+    "userId": "01893ea5-8b68-7142-ad69-f066bfa7a7e9"
+  }
+]
+---------TRACK DATA------------------
+{
+  "data": [
+    {
+      "trackId": "01893ea5-8bb8-78f8-bb24-f9992eff0463",
+	  "artistId": "01893ea5-8b68-7142-ad69-f066bfa7a7e9",
+      "listen": 1
+    },
+    {
+      "trackId": "018a3cae-a218-7950-8e76-1b680d1975c1",
+	  "artistId": "01893ea5-8b68-7142-ad69-f066bfa7a7e9",
+      "listen": 2
+    }
+  ],
+  "timestamp": "2023-25-10:21:00:00"
+}
+
+
+
+
+
+
+value[0] = "track_1": "listen_count1"
+
+
+
+ ==> 5 phút 1 lần
+
+==> lưu vào mongoDB thông tin chính: 
+	{
+		track_id: "adwdawdawd"
+		listen_count: "100"
+		time_stamp: "19:12:00 27:8:2023" ==> phải set theo giờ cụ thể
+	}
+
+==> collection trên mongo
+{
+	track_id: "1",
+	logging: [
+		{listen_count: 100, time_Stamp: "1."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+	]	
+},
+{
+	track_id: "2",
+	logging: [
+		{listen_count: 100, like_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+		{listen_count: 100, time_Stamp: "..."},
+	]	
+},

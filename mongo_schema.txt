@@ -1,0 +1,68 @@
+// collection month
+
+// log each 15 mins ==> 1 day = 24h * 4 = 96 logs ==> 500 tracks * 96 = 48000
+
+{
+    "timestamp": 2023-03-09:00:00:00,
+    "date": 2023-03-09
+    "data": [
+        {
+            "track_id": "2983hawdjjawd",
+            "listen": 3
+        },
+        {
+            "track_id": "23671323azcxxc",
+            "listen": 3
+        },
+    ]
+}
+
+
+{
+    "time_stamp": ISODate(2023_08_31),
+    "logging": [
+        {
+            "id":1 ,
+            "data": [
+                {
+                    "track_id": "2983hawdjjawd",
+                    "listen": 3
+                },
+                {
+                    "track_id": "23671323azcxxc",
+                    "listen": 3
+                },
+            ]
+        },
+        {
+            "id":2 ,
+            "data": [
+                {
+                    "track_id": "2983hawdjjawd",
+                    "listen": 3
+                },
+                {
+                    "track_id": "23671323azcxxc",
+                    "listen": 3
+                },
+            ]
+        },
+        ...
+        {
+            "id":96 ,
+            "data": [
+                {
+                    "track_id": "2983hawdjjawd",
+                    "listen": 3
+                },
+                {
+                    "track_id": "23671323azcxxc",
+                    "listen": 3
+                },
+            ]
+        },
+    ],
+    "number_log_data": 1,  // nunmber of log in this day
+    "total_listen": ... ,
+},
+

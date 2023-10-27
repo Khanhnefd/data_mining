@@ -10,7 +10,7 @@ import logging
 
 
 async def connect_mongo() -> MongoClient:
-    conn_str = "mongodb+srv://khanh:uZ3t2sbNaCiNlp5H@firstcluster.rccmvcx.mongodb.net/"
+    # conn_str = "mongodb+srv://khanh:uZ3t2sbNaCiNlp5H@firstcluster.rccmvcx.mongodb.net/"
     try:
         client = MongoClient(conn_str)
         # db = client.get_database(db_name)

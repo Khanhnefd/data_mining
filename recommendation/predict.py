@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
+import torch.nn.functional as F
 import torch
 from util import set_device
 
 
 device = set_device()
 
-def _preddict(loader, model):
+def preddict(loader, model):
     model.eval()
     j = 1
     with torch.no_grad():
@@ -18,4 +19,4 @@ def _preddict(loader, model):
         _, indices = torch.topk(logits, 20, -1)
         print('Is next clicked item in top 20 suggestions: ', (target in indices))
         print('Top 20 next item indices suggested: ')
-    return indices
+    return indices[0].tolist()

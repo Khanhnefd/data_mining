@@ -7,14 +7,17 @@ class Data(BaseModel):
     artistId: str
     listen: int
 
+
 class LogData(BaseModel):
     timestamp: str
     data: List[Data]
+
 
 class ListenHistory(BaseModel):
     listenDuration: str
     trackId: str
     timestamp: str
+
 
 class UserListenHistory(BaseModel):
     userId: str

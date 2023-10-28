@@ -30,8 +30,15 @@ import time
 #     multi=True
 # )
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+conn_str = os.getenv("conn_str")
+
 def connect_mongo(db_name: str):
-    conn_str = "mongodb+srv://khanh:uZ3t2sbNaCiNlp5H@firstcluster.rccmvcx.mongodb.net/"
+    # conn_str = "mongodb+srv://khanh:uZ3t2sbNaCiNlp5H@firstcluster.rccmvcx.mongodb.net/"
     try:
         client = MongoClient(conn_str)
         db = client.get_database(db_name)
@@ -43,16 +50,18 @@ def connect_mongo(db_name: str):
     except:
         print("connecting error")
 
+
 def create_mongo_collection(db: Database, collection_name: str):
     db.create_collection(
         collection_name,
-        timeseries = {
-                "timeField": "timestamp",
-                "metaField": "date",
-                "granularity": "minutes"
+        timeseries={
+            "timeField": "timestamp",
+            "metaField": "date",
+            "granularity": "minutes",
         }
         # expireAfterSeconds = 90000
     )
+
 
 def find_document(collection: Collection, timestamp):
     x = collection.find({"timestamp": timestamp}, {})
@@ -72,23 +81,17 @@ time_today = datetime.now()
 
 
 data = {
-	"timestamp": "2023-04-09:12:30:00",
-	"data": [
-		{
-			"track_id": "2372737dajgwdawjd",
-			"listen": 777
-		},
-		{
-			"track_id": "00007dajgwdawjd",
-			"listen": 777
-		}
-	]
+    "timestamp": "2023-04-09:12:30:00",
+    "data": [
+        {"track_id": "2372737dajgwdawjd", "listen": 777},
+        {"track_id": "00007dajgwdawjd", "listen": 777},
+    ],
 }
 
 
-def insert_mongo(collection: Collection , insert_data):
+def insert_mongo(collection: Collection, insert_data):
 
-    insert_time = datetime.strptime(insert_data['timestamp'], f'%Y-%d-%m:%H:%M:%S')
+    insert_time = datetime.strptime(insert_data["timestamp"], f"%Y-%d-%m:%H:%M:%S")
     # print(insert_time.hour)
     # print(type(insert_time.hour))
 
@@ -96,11 +99,10 @@ def insert_mongo(collection: Collection , insert_data):
         {
             "timestamp": insert_time,
             "date": insert_time.strftime(f"%Y-%d-%m"),
-            "data": insert_data['data'],
-            "total_listen": sum([i['listen'] for i in insert_data['data']])
+            "data": insert_data["data"],
+            "total_listen": sum([i["listen"] for i in insert_data["data"]]),
         }
     )
-
 
     # # result = collection.insert_many(
     # #     [
@@ -131,14 +133,13 @@ def insert_mongo(collection: Collection , insert_data):
     # #         # },
     # #     ]
     # # )
-    
+
     print(result.inserted_id)
-    
 
 
 if __name__ == "__main__":
     db_name = "spotify_logging"
-    db = connect_mongo(db_name)    
+    db = connect_mongo(db_name)
 
     # create_mongo_collection(db, "8_2023")
     # create_mongo_collection(db, "9_2023")
@@ -150,8 +151,6 @@ if __name__ == "__main__":
     # time.sleep(5)
 
     # insert_mongo(db["8_2023"], insert_data=data)
-
-
 
     # find_time = (time_today - timedelta(days=3)).replace(hour=0, minute=0, second=0, microsecond=0)
 

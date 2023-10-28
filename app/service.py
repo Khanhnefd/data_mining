@@ -7,13 +7,74 @@ from function import (
     insert_listen_history,
     get_user_streaming_history,
 )
+
+
+from recommendation.predict_module import load_model, predict
+from recommendation.data import RecSysDataset, Voc
+from recommendation.data_util import collate_fn
+from recommendation.util import get_track_ids, get_tracks_feature_data, load_file
+
+
 from datetime import datetime
 from typing import List
+from torch.utils.data import DataLoader
+from model.config import ModelConfig as Config
+from random import sample 
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("debug.log"),
+        logging.StreamHandler()
+    ]
+)
+
+
 
 router = APIRouter()
 
 db_name = "spotify_logging"
 db_user_history = "mev_user_history"
+
+# we have: track_id <-> item_index (0, 1, 2, 3, ...)  ==> train model by item_index
+list_track_id = get_track_ids() # track id is 'adawhdwjdwd12831', 'jadwjdkawdk2891312'
+feature_data = get_tracks_feature_data()
+
+
+train = load_file('data/train.pkl')
+# data train bao gồm: train_input_seq và train_input_label
+# ex: [[214834865], [214834865, 214820225]]  -   [214820225, 214706441]
+test = load_file('data/test.pkl')
+voc = Voc("VocabularyItem")
+voc.addSenquence([train[1]] + [test[1]])
+
+
+
+@router.post("/recommendation")
+async def recommendation_tracks(
+    previous_track_id: List[str],
+    number_recommend: int = 3
+) -> list:
+    model = load_model(checkpoint_path="model/latest_checkpoint_4.pt", voc=voc, device_id= 0)
+    result = []
+    logging.info(f"previous track : {previous_track_id}")
+    # try:
+    previous_item_id = [[list_track_id.index(id) for id in previous_track_id]]
+    logging.info(f"previous_item_id: {previous_item_id}")
+
+    input_data = RecSysDataset([previous_item_id, [0]])
+    data_loader = DataLoader(input_data, batch_size = Config.batch_size_predict, shuffle = False, collate_fn = collate_fn)
+
+    predict_index_list = predict(loader=data_loader, model=model, topk = number_recommend, total_track_number= len(list_track_id) , device_id = Config.device)
+
+    result = [list_track_id[index] for index in predict_index_list]
+    # except:
+    #     logging.info("exception in /recommendation API")
+    #     result = sample(list_track_id, number_recommend)
+
+    logging.info(f"Result recommendation : {result}")
+    return result
 
 
 @router.post("/log-listen-history")

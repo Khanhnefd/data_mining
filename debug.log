@@ -1,0 +1,49 @@
+2023-10-28 00:18:48,153 [INFO] Check cuda is available or not:
+2023-10-28 00:18:48,154 [INFO] Cuda is not available
+2023-10-28 00:18:48,167 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:18:48,169 [INFO] exception in /recommendation API
+2023-10-28 00:18:48,171 [INFO] Result recommendation : ['01893ea5-8bba-7049-8653-0a273c558832', '01893ea5-8bbb-734a-a681-a525a92cbfac', '01893ea5-8bb9-7ba8-a1bc-1b378ea1fdc9']
+2023-10-28 00:22:21,134 [INFO] Check cuda is available or not:
+2023-10-28 00:22:21,135 [INFO] Cuda is not available
+2023-10-28 00:22:21,149 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:22:21,150 [INFO] previous_item_id: [119, 117]
+2023-10-28 00:22:21,151 [INFO] exception in /recommendation API
+2023-10-28 00:22:21,151 [INFO] Result recommendation : ['01893ea5-8bbc-7317-b4f5-013e102ed0d3', '01893ea5-8bbc-725d-b47d-a7a384ec2457', '01893ea5-8bba-78c4-b15a-fc65d0b2dc51']
+2023-10-28 00:23:15,135 [INFO] Check cuda is available or not:
+2023-10-28 00:23:15,137 [INFO] Cuda is not available
+2023-10-28 00:23:15,152 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:23:15,153 [INFO] previous_item_id: [119, 117]
+2023-10-28 00:23:51,606 [INFO] Check cuda is available or not:
+2023-10-28 00:23:51,607 [INFO] Cuda is not available
+2023-10-28 00:23:51,620 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:23:51,621 [INFO] previous_item_id: [119, 117]
+2023-10-28 00:23:51,624 [INFO] Check cuda is available or not:
+2023-10-28 00:23:51,624 [INFO] Cuda is not available
+2023-10-28 00:24:36,140 [INFO] Check cuda is available or not:
+2023-10-28 00:24:36,141 [INFO] Cuda is not available
+2023-10-28 00:24:36,155 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:24:36,156 [INFO] previous_item_id: [119, 117]
+2023-10-28 00:24:36,158 [INFO] Check cuda is available or not:
+2023-10-28 00:24:36,158 [INFO] Cuda is not available
+2023-10-28 00:26:11,624 [INFO] Check cuda is available or not:
+2023-10-28 00:26:11,627 [INFO] Cuda is not available
+2023-10-28 00:26:11,638 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243']
+2023-10-28 00:26:11,638 [INFO] previous_item_id: [[119, 117]]
+2023-10-28 00:26:11,640 [INFO] Check cuda is available or not:
+2023-10-28 00:26:11,640 [INFO] Cuda is not available
+2023-10-28 00:26:12,113 [INFO] Result recommendation : ['01893ea5-8bba-78c4-b15a-fc65d0b2dc51', '01893ea5-8bbc-7fdc-8a51-78b5c16ad165', '01893ea5-8bba-731e-8d5c-8f89b9275279', '01893ea5-8bb9-7e77-8d6d-b032164893f7', '01893ea5-8bbc-7e80-978c-165ce12cba06', '01893ea5-8bba-724e-b28c-02ae46e68d5f', '01893ea5-8bba-7c6b-b3de-eaa0015f1a4f', '01893ea5-8bbc-762f-98e7-d26b612bc2ea', '018a6e92-6e9b-797c-adc5-4e74b7627243', '01893ea5-8bba-7729-a8a4-0cf4f21209f0', '01893ea5-8bb8-7b7f-bb8d-dbc18b6ef5f1', '01893ea5-8bbc-7395-a507-c3841163d7bb', '01893ea5-8bb8-7c9e-a3bf-b59566eb2f60', '01893ea5-8bbc-70e7-848e-452940d46f46', '01893ea5-8bb9-7c1f-8759-87ce920f2744', '01893ea5-8bb9-7158-99a3-bdabbd762be9', '018a6da5-458d-7ea6-9adc-1c6ea427435e', '018a729e-f61c-762a-9a6c-0eab6157a1ee', '01893ea5-8bb8-727f-aeb3-a74dfc293288', '01893ea5-8bbc-74a7-a586-76354ff53858']
+2023-10-28 00:27:37,083 [INFO] Check cuda is available or not:
+2023-10-28 00:27:37,084 [INFO] Cuda is not available
+2023-10-28 00:27:37,102 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243', '01893ea5-8bba-74b5-8b6c-50d2ca2193de', '01893ea5-8bba-7585-9c3e-1fd34370b307', '01893ea5-8bb8-722c-bafc-4940387ab462']
+2023-10-28 00:27:37,104 [INFO] previous_item_id: [[119, 117, 76, 32, 21]]
+2023-10-28 00:27:37,110 [INFO] Check cuda is available or not:
+2023-10-28 00:27:37,110 [INFO] Cuda is not available
+2023-10-28 00:27:37,527 [INFO] Result recommendation : ['01893ea5-8bb8-727f-aeb3-a74dfc293288', '01893ea5-8bba-724e-b28c-02ae46e68d5f', '01893ea5-8bbc-7c40-98f0-22951ee2d965']
+2023-10-28 00:30:51,607 [INFO] Check cuda is available or not:
+2023-10-28 00:30:51,610 [INFO] Cuda is not available
+2023-10-28 00:30:51,623 [INFO] previous track : ['018b52bf-a103-7dab-804f-820c9bee4e39', '018a6e92-6e9b-797c-adc5-4e74b7627243', '01893ea5-8bba-74b5-8b6c-50d2ca2193de', '01893ea5-8bba-7585-9c3e-1fd34370b307', '01893ea5-8bb8-722c-bafc-4940387ab462']
+2023-10-28 00:30:51,623 [INFO] previous_item_id: [[119, 117, 76, 32, 21]]
+2023-10-28 00:30:51,626 [INFO] Check cuda is available or not:
+2023-10-28 00:30:51,626 [INFO] Cuda is not available
+2023-10-28 00:30:52,098 [INFO] softmax prob : tensor([[0.0114, 0.0095, 0.0074, 0.0071, 0.0058]])
+2023-10-28 00:30:52,099 [INFO] Result recommendation : ['01893ea5-8bb8-727f-aeb3-a74dfc293288', '01893ea5-8bba-724e-b28c-02ae46e68d5f', '01893ea5-8bbc-7c40-98f0-22951ee2d965', '01893ea5-8bb8-7a51-8131-e97d7a36614a', '01893ea5-8bb9-7158-99a3-bdabbd762be9']

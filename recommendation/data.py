@@ -7,6 +7,7 @@ PAD_token = 0  # token padding cho câu ngắn ==> index = 0
 
 # tạo Vocabulary for index input
 
+
 class Voc:
     def __init__(self, name):
         self.name = name
@@ -18,8 +19,8 @@ class Voc:
 
     def addSenquence(self, data):
         for sequence in data:
-          for item in sequence:
-              self.addItem(item)
+            for item in sequence:
+                self.addItem(item)
 
     # Thêm một item vào hệ thống
     def addItem(self, item):
@@ -43,9 +44,13 @@ class Voc:
             if v >= min_count:
                 keep_items.append(k)
 
-        print('keep_items {} / {} = {:.4f}'.format(
-            len(keep_items), len(self.item2index), len(keep_items) / len(self.item2index)
-        ))
+        print(
+            "keep_items {} / {} = {:.4f}".format(
+                len(keep_items),
+                len(self.item2index),
+                len(keep_items) / len(self.item2index),
+            )
+        )
 
         # Khởi tạo lại từ điển
         self.item2index = {}
@@ -61,15 +66,16 @@ class Voc:
     def _seqItem2seqIndex(self, x):
         return [self.item2index[item] if item in self.item2index else 0 for item in x]
 
+
 class RecSysDataset(Dataset):
-    """define the pytorch Dataset class for yoochoose and diginetica datasets.
-    """
+    """define the pytorch Dataset class for yoochoose and diginetica datasets."""
+
     def __init__(self, data):
         self.data = data
-        print('-'*50)
-        print('Dataset info:')
-        print('Number of sessions: {}'.format(len(data[0])))
-        print('-'*50)
+        print("-" * 50)
+        print("Dataset info:")
+        print("Number of sessions: {}".format(len(data[0])))
+        print("-" * 50)
 
     def __getitem__(self, index):
         session_items = self.data[0][index]

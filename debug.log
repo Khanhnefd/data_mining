@@ -47,3 +47,12 @@
 2023-10-28 00:30:51,626 [INFO] Cuda is not available
 2023-10-28 00:30:52,098 [INFO] softmax prob : tensor([[0.0114, 0.0095, 0.0074, 0.0071, 0.0058]])
 2023-10-28 00:30:52,099 [INFO] Result recommendation : ['01893ea5-8bb8-727f-aeb3-a74dfc293288', '01893ea5-8bba-724e-b28c-02ae46e68d5f', '01893ea5-8bbc-7c40-98f0-22951ee2d965', '01893ea5-8bb8-7a51-8131-e97d7a36614a', '01893ea5-8bb9-7158-99a3-bdabbd762be9']
+2023-10-28 11:37:39,217 [INFO] Check cuda is available or not:
+2023-10-28 11:37:39,218 [INFO] Cuda is not available
+2023-10-28 11:37:39,268 [INFO] previous track : ['01893ea5-8bb8-7079-b93b-edc7294c9d95']
+2023-10-28 11:37:39,269 [INFO] previous_item_id: [[20]]
+2023-10-28 11:37:39,271 [INFO] Check cuda is available or not:
+2023-10-28 11:37:39,272 [INFO] Cuda is not available
+2023-10-28 11:37:39,919 [INFO] softmax prob : tensor([[0.0041, 0.0030, 0.0028]])
+2023-10-28 11:37:39,920 [INFO] Result recommendation : ['01893ea5-8bbb-75c4-a42b-8ff9d37b9948', '01893ea5-8bb8-7a51-8131-e97d7a36614a', '01893ea5-8bb8-7c94-87ad-1d6e5cbd425c']
+-----------------------------

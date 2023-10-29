@@ -59,19 +59,19 @@ async def recommendation_tracks(
     model = load_model(checkpoint_path="model/latest_checkpoint_4.pt", voc=voc, device_id= 0)
     result = []
     logging.info(f"previous track : {previous_track_id}")
-    # try:
-    previous_item_id = [[list_track_id.index(id) for id in previous_track_id]]
-    logging.info(f"previous_item_id: {previous_item_id}")
+    try:
+        previous_item_id = [[list_track_id.index(id) for id in previous_track_id]]
+        logging.info(f"previous_item_id: {previous_item_id}")
 
-    input_data = RecSysDataset([previous_item_id, [0]])
-    data_loader = DataLoader(input_data, batch_size = Config.batch_size_predict, shuffle = False, collate_fn = collate_fn)
+        input_data = RecSysDataset([previous_item_id, [0]])
+        data_loader = DataLoader(input_data, batch_size = Config.batch_size_predict, shuffle = False, collate_fn = collate_fn)
 
-    predict_index_list = predict(loader=data_loader, model=model, topk = number_recommend, total_track_number= len(list_track_id) , device_id = Config.device)
+        predict_index_list = predict(loader=data_loader, model=model, topk = number_recommend, total_track_number= len(list_track_id) , device_id = Config.device)
 
-    result = [list_track_id[index] for index in predict_index_list]
-    # except:
-    #     logging.info("exception in /recommendation API")
-    #     result = sample(list_track_id, number_recommend)
+        result = [list_track_id[index] for index in predict_index_list]
+    except:
+        logging.info("exception in /recommendation API")
+        result = sample(list_track_id, number_recommend)
 
     logging.info(f"Result recommendation : {result}")
     return result
@@ -83,6 +83,8 @@ async def log_listen_history(listen_history: List[UserListenHistory]) -> list:
     db_cursor = mongo_client.get_database(db_user_history)
 
     result = await insert_listen_history(db=db_cursor, data=listen_history)
+
+    mongo_client.close()
 
     return result
 
@@ -118,6 +120,7 @@ async def get_listen_history(
     result = await get_user_streaming_history(
         db=db_cursor, user_id=user_id, limit=limit
     )
+    mongo_client.close()
 
     return result
 
@@ -156,6 +159,8 @@ async def payment_artists(
             ]
         )
     )
+
+    mongo_client.close()
 
     return result
 
@@ -223,5 +228,6 @@ async def get_artist_statistics(
         )
     )
 
+    mongo_client.close()
     return result
 

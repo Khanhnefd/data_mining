@@ -55,4 +55,31 @@
 2023-10-28 11:37:39,272 [INFO] Cuda is not available
 2023-10-28 11:37:39,919 [INFO] softmax prob : tensor([[0.0041, 0.0030, 0.0028]])
 2023-10-28 11:37:39,920 [INFO] Result recommendation : ['01893ea5-8bbb-75c4-a42b-8ff9d37b9948', '01893ea5-8bb8-7a51-8131-e97d7a36614a', '01893ea5-8bb8-7c94-87ad-1d6e5cbd425c']
------------------------------
+-----------------------------2023-10-28 16:04:50,411 [INFO] Check cuda is available or not:
+2023-10-28 16:04:50,412 [INFO] Cuda is not available
+2023-10-28 16:04:50,470 [INFO] previous track : ['']
+2023-10-28 16:09:46,109 [INFO] Check cuda is available or not:
+2023-10-28 16:09:46,120 [INFO] Cuda is not available
+2023-10-28 16:09:46,193 [INFO] previous track : ['']
+2023-10-28 16:09:46,283 [INFO] exception in /recommendation API
+2023-10-28 16:09:46,340 [INFO] Result recommendation : ['01893ea5-8bb9-7b83-bdd4-2ce5b00329fa', '01893ea5-8bbc-7501-9b39-412d245765d6', '01893ea5-8bba-731e-8d5c-8f89b9275279']
+2023-10-28 16:09:51,169 [INFO] Check cuda is available or not:
+2023-10-28 16:09:51,169 [INFO] Cuda is not available
+2023-10-28 16:09:51,182 [INFO] previous track : ['string']
+2023-10-28 16:09:51,183 [INFO] exception in /recommendation API
+2023-10-28 16:09:51,184 [INFO] Result recommendation : ['01893ea5-8bbb-7f04-a8a8-32ff4d5cb83d', '01893ea5-8bb8-727f-aeb3-a74dfc293288', '01893ea5-8bba-7a5e-8585-259ac2c17203']
+2023-10-28 16:09:52,059 [INFO] Check cuda is available or not:
+2023-10-28 16:09:52,060 [INFO] Cuda is not available
+2023-10-28 16:09:52,072 [INFO] previous track : ['string']
+2023-10-28 16:09:52,072 [INFO] exception in /recommendation API
+2023-10-28 16:09:52,073 [INFO] Result recommendation : ['01893ea5-8bb8-7b7f-bb8d-dbc18b6ef5f1', '01893ea5-8bbc-7ac0-b85c-30a4bb5f4d2e', '01893ea5-8bb8-7555-b589-1a06a1b00c9b']
+2023-10-28 16:09:52,746 [INFO] Check cuda is available or not:
+2023-10-28 16:09:52,747 [INFO] Cuda is not available
+2023-10-28 16:09:52,758 [INFO] previous track : ['string']
+2023-10-28 16:09:52,758 [INFO] exception in /recommendation API
+2023-10-28 16:09:52,759 [INFO] Result recommendation : ['01893ea5-8bba-7049-8653-0a273c558832', '01893ea5-8bbc-714a-9b9a-56ed05c9d9d5', '01893ea5-8bbb-7831-8138-1c9b5543694d']
+2023-10-28 16:12:04,009 [INFO] Check cuda is available or not:
+2023-10-28 16:12:04,009 [INFO] Cuda is not available
+2023-10-28 16:12:04,024 [INFO] previous track : ['']
+2023-10-28 16:12:04,026 [INFO] exception in /recommendation API
+2023-10-28 16:12:04,027 [INFO] Result recommendation : ['01893ea5-8bb8-7655-ad9b-3f662072c00b', '01893ea5-8bba-7585-9c3e-1fd34370b307', '01893ea5-8bb9-791c-a516-d4e5a84533a0']

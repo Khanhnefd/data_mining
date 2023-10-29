@@ -11,10 +11,12 @@ import os
 
 load_dotenv()
 
-conn_str = os.getenv("conn_str")
+MONGO_USER = os.getenv("MONGO_USER")
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
 
 
 async def connect_mongo() -> MongoClient:
+    conn_str = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@firstcluster.rccmvcx.mongodb.net/"
     try:
         client = MongoClient(conn_str)
         # db = client.get_database(db_name)

@@ -15,7 +15,7 @@ MONGO_USER = os.getenv("MONGO_USER")
 MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
 
 
-async def connect_mongo() -> MongoClient:
+def connect_mongo() -> MongoClient:
     conn_str = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@firstcluster.rccmvcx.mongodb.net/"
     try:
         client = MongoClient(conn_str)
@@ -24,6 +24,7 @@ async def connect_mongo() -> MongoClient:
         return client
     except:
         print("connecting error")
+        return None
 
 
 async def get_data_date(timestamp: str) -> datetime:

@@ -19,44 +19,42 @@ from datetime import datetime
 from typing import List
 from torch.utils.data import DataLoader
 from model.config import ModelConfig as Config
-from random import sample 
+from random import sample
 import logging
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("debug.log"),
-        logging.StreamHandler()
-    ]
+    handlers=[logging.FileHandler("debug.log"), logging.StreamHandler()],
 )
-
 
 
 router = APIRouter()
 
 db_name = "spotify_logging"
 db_user_history = "mev_user_history"
+mongo_client = connect_mongo()
 
 # we have: track_id <-> item_index (0, 1, 2, 3, ...)  ==> train model by item_index
-list_track_id = get_track_ids() # track id is 'adawhdwjdwd12831', 'jadwjdkawdk2891312'
+list_track_id = get_track_ids()  # track id is 'adawhdwjdwd12831', 'jadwjdkawdk2891312'
 feature_data = get_tracks_feature_data()
 
 
-train = load_file('data/train.pkl')
+train = load_file("data/train.pkl")
 # data train bao gồm: train_input_seq và train_input_label
 # ex: [[214834865], [214834865, 214820225]]  -   [214820225, 214706441]
-test = load_file('data/test.pkl')
+test = load_file("data/test.pkl")
 voc = Voc("VocabularyItem")
 voc.addSenquence([train[1]] + [test[1]])
 
 
-
 @router.post("/recommendation")
 async def recommendation_tracks(
-    previous_track_id: List[str],
-    number_recommend: int = 3
+    previous_track_id: List[str], number_recommend: int = 3
 ) -> list:
-    model = load_model(checkpoint_path="model/latest_checkpoint_4.pt", voc=voc, device_id= 0)
+    model = load_model(
+        checkpoint_path="model/latest_checkpoint_4.pt", voc=voc, device_id=0
+    )
     result = []
     logging.info(f"previous track : {previous_track_id}")
     try:
@@ -64,9 +62,20 @@ async def recommendation_tracks(
         logging.info(f"previous_item_id: {previous_item_id}")
 
         input_data = RecSysDataset([previous_item_id, [0]])
-        data_loader = DataLoader(input_data, batch_size = Config.batch_size_predict, shuffle = False, collate_fn = collate_fn)
+        data_loader = DataLoader(
+            input_data,
+            batch_size=Config.batch_size_predict,
+            shuffle=False,
+            collate_fn=collate_fn,
+        )
 
-        predict_index_list = predict(loader=data_loader, model=model, topk = number_recommend, total_track_number= len(list_track_id) , device_id = Config.device)
+        predict_index_list = predict(
+            loader=data_loader,
+            model=model,
+            topk=number_recommend,
+            total_track_number=len(list_track_id),
+            device_id=Config.device,
+        )
 
         result = [list_track_id[index] for index in predict_index_list]
     except:
@@ -79,19 +88,13 @@ async def recommendation_tracks(
 
 @router.post("/log-listen-history")
 async def log_listen_history(listen_history: List[UserListenHistory]) -> list:
-    mongo_client = await connect_mongo()
     db_cursor = mongo_client.get_database(db_user_history)
-
     result = await insert_listen_history(db=db_cursor, data=listen_history)
-
-    mongo_client.close()
-
     return result
 
 
 @router.post("/log-web-data")
 async def log_web_data(log_data: LogData) -> dict:
-    mongo_client = await connect_mongo()
     db_cursor = mongo_client.get_database(db_name)
 
     timestamp = log_data.timestamp
@@ -103,8 +106,6 @@ async def log_web_data(log_data: LogData) -> dict:
         collection=collection, insert_data=log_data.dict()
     )
 
-    mongo_client.close()
-
     response = {"collection_name": collection_name, "inserted_id": str(inserted_id)}
     return response
 
@@ -114,13 +115,11 @@ async def get_listen_history(
     user_id: str,
     limit: int = 20,
 ):
-    mongo_client = await connect_mongo()
     db_cursor = mongo_client.get_database(db_user_history)
 
     result = await get_user_streaming_history(
         db=db_cursor, user_id=user_id, limit=limit
     )
-    mongo_client.close()
 
     return result
 
@@ -130,7 +129,6 @@ async def payment_artists(
     year: int = 2023,
     month: int = 10,
 ):
-    mongo_client = await connect_mongo()
     db_cursor = mongo_client.get_database(db_name)
 
     collection_name = f"{month}_{year}"
@@ -160,8 +158,6 @@ async def payment_artists(
         )
     )
 
-    mongo_client.close()
-
     return result
 
 
@@ -169,7 +165,6 @@ async def payment_artists(
 async def get_artist_statistics(
     artist_id: str, year: int = 2023, month: int = 10, day: int = None
 ):
-    mongo_client = await connect_mongo()
     db_cursor = mongo_client.get_database(db_name)
 
     collection_name = f"{month}_{year}"
@@ -228,6 +223,4 @@ async def get_artist_statistics(
         )
     )
 
-    mongo_client.close()
     return result
-

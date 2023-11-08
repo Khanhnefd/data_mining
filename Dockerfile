@@ -28,11 +28,10 @@ CMD ["python", "app/main.py"]
 
 EXPOSE 8001
 
-# docker run --rm --name khanh_cnt -it -d -p 9001:8080 fastapi-app
-# docker run --name khanh_rec -it -d -p 9001:8001 rec-sys:v1.0
-#  docker build -f Dockerfile -t rec-sys:v1.0 --build-arg MONGO_USER=khanh --build-arg MONGO_PASSWORD=uZ3t2sbNaCiNlp5H .
+
+#  docker build -f Dockerfile -t rec-sys:v1.0 --build-arg MONGO_USER= --build-arg MONGO_PASSWORD= .
 
 
-# docker run --name khanh_rec -it -d -p 9001:8001 -e MONGO_USER=khanh -e MONGO_PASSWORD=uZ3t2sbNaCiNlp5H rec-sys:lastest
+# docker run --name khanh_rec -it -d -p 9001:8001 -e MONGO_USER= -e MONGO_PASSWORD= rec-sys:lastest
 # docker run --name khanh_rec -it -d -p 9001:8001 --env-file .env rec-sys:latest
-# docker build -f Dockerfile -t rec-sys .
+# docker build -f Dockerfile -t rec-sys:v1.0 .

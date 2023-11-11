@@ -162,6 +162,7 @@ async def payment_artists(
 
 
 @router.get("/artist-listen-statistic")
+# get statistic of artist by specific date
 async def get_artist_statistics(
     artist_id: str, year: int = 2023, month: int = 10, day: int = None
 ):
@@ -172,6 +173,7 @@ async def get_artist_statistics(
 
     match_agg = {}
 
+    # day None ==> get full month
     if day is not None:
         match_agg = {
             "$match": {
@@ -222,5 +224,51 @@ async def get_artist_statistics(
             ]
         )
     )
+
+    return result
+
+
+@router.get("/web-listen-statistic")
+# get statistic of website from date to date
+async def get_web_statistic(
+    artist_id: str = None,  # artist_id = None ==> get all web
+    year: int = 2023,
+    month: int = 10,
+):
+    db_cursor = mongo_client.get_database(db_name)
+
+    collection_name = f"{month}_{year}"
+    collection = db_cursor[collection_name]
+
+    filter_artist = {
+        "$project": {
+            "data": {
+                "$filter": {
+                    "input": "$data",
+                    "as": "d",
+                    "cond": {"$eq": ["$$d.artistId", artist_id]},
+                }
+            },
+            "date": 1,
+        },
+    }
+    filter_empty = {"$match": {"data.artistId": artist_id}}
+
+    pipeline = []
+
+    if artist_id is None:
+        pipeline = [
+            {"$unwind": {"path": "$data"}},
+            {"$group": {"_id": "$date", "listen_total": {"$sum": "$data.listen"}}},
+        ]
+    else:
+        pipeline = [
+            filter_artist,
+            filter_empty,
+            {"$unwind": {"path": "$data"}},
+            {"$group": {"_id": "$date", "listen_total": {"$sum": "$data.listen"}}},
+        ]
+
+    result = list(collection.aggregate(pipeline))
 
     return result

@@ -7,7 +7,6 @@
     "lr": 0.001,
     "lr_dc": 0.1,
     "lr_dc_step": 80,
-    "test": "store_true",
     "topk": 20,
     "valid_portion": 0.1,
     "device": 0,

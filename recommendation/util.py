@@ -2,6 +2,9 @@ import torch
 import logging
 import pandas as pd
 import pickle
+import torch.nn.functional as F
+import numpy as np
+from model.config import ModelConfig as Config
 
 
 def set_device(device_id: int = 0) -> torch.device:
@@ -37,7 +40,7 @@ def get_track_ids() -> list:
 
 def get_tracks_feature_data() -> dict:
     feature_data_filter = pd.read_pickle(
-        "data/data_spotify_track_feature_processed.pkl"
+        "data/data_track_feature_processed.pkl"
     )
     feature_data = feature_data_filter.set_index("id").T.to_dict("list")
 
@@ -48,3 +51,60 @@ def load_file(filename):
     with open(filename, "rb") as fn:
         data = pickle.load(fn)
     return data
+
+def get_recall(indices, targets):
+    device = set_device(0)
+    targets = targets.view(-1, 1).expand_as(indices)
+    hits = (targets == indices).to(device)
+    hits = hits.double()
+    if targets.size(0) == 0:
+        return 0
+    n_hits = torch.sum(hits)
+    recall = n_hits / targets.size(0)
+    return recall
+
+
+def get_mrr(indices, targets):
+    device = set_device(0)
+    tmp = targets.view(-1, 1)
+    targets = tmp.expand_as(indices)
+    hits = (targets == indices).to(device)
+    hits = hits.double()
+    if hits.sum() == 0:
+      return 0
+    argsort = []
+    for i in np.arange(hits.shape[0]):
+      index_col = torch.where(hits[i, :] == 1)[0]+1
+      if index_col.shape[0] != 0:
+        argsort.append(index_col.double())
+    inv_argsort = [1/item for item in argsort]
+    mrr = sum(inv_argsort)/hits.size(0)
+    return mrr
+
+
+def evaluate(logits, targets, k=20):
+    _, indices = torch.topk(logits, k, -1)
+    recall = get_recall(indices, targets)
+    mrr = get_mrr(indices, targets)
+    return recall, mrr
+
+def validate(valid_loader, model):
+    device = set_device(0)
+    model.eval()
+    recalls = []
+    mrrs = []
+    with torch.no_grad():
+        for seq, target, lens in valid_loader:
+            seq = seq.to(device)
+            target = target.to(device)
+            outputs = model(seq, lens)
+            logits = F.softmax(outputs, dim = 1)
+            recall, mrr = evaluate(logits, target, k = Config.topk)
+            recalls.append(recall)
+            mrrs.append(mrr)
+    print("recalls:", recalls)
+    print("mrrs:", mrrs)
+
+    mean_recall = torch.mean(torch.stack(recalls))
+    mean_mrr = torch.mean(torch.stack(mrrs))
+    return mean_recall, mean_mrr

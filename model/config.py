@@ -16,7 +16,6 @@ class ModelConfig:
     lr = config["lr"]
     lr_dc = config["lr_dc"]
     lr_dc_step = config["lr_dc_step"]
-    test = config["test"]
     topk = config["topk"]
     valid_portion = config["valid_portion"]
     device = config["device"]
